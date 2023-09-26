@@ -138,8 +138,8 @@ func (api *API) DeleteWord(w http.ResponseWriter, r *http.Request) {
 func (api *API) initRoutes(r *chi.Mux) {
 	r.Get("/words", api.GetWords)
 	r.Post("/words", api.AddWord)
-	r.Put("/words", api.UpdateWord)
-	r.Delete("/words", api.DeleteWord)
+	r.Put("/words/{id}", api.UpdateWord)
+	r.Delete("/words/{id}", api.DeleteWord)
 }
 
 func jsonResponse(w http.ResponseWriter, data any) {
