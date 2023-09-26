@@ -71,3 +71,5 @@ func (d *WordsDictionary) Add(upd WordProperties) (int, error) {
 
 	return word.ID, err
 }
+
+// TODO: implement DeleteAll method
