@@ -63,11 +63,11 @@ func (d *WordsDictionary) Update(id int, upd WordProperties) (error) {
 	return err
 }
 
-func (d *WordsDictionary) Add(upd WordProperties) (error) {
+func (d *WordsDictionary) Add(upd WordProperties) (int, error) {
 	word := Word{
 		WordProperties: upd,
 	}
 	err := d.db.Create(&word).Error
 
-	return err
+	return word.ID, err
 }
