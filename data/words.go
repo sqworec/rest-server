@@ -44,6 +44,12 @@ func (d *WordsDictionary) Delete(id int) (error) {
 	return err
 }
 
+func (d *WordsDictionary) DeleteAll() (error) {
+	err := d.db.Where("1 = 1").Delete(&Word{}).Error
+
+	return err
+}
+
 func (d *WordsDictionary) Update(id int, upd WordProperties) (error) {
 	w := Word{}
 	err := d.db.Find(&w, id).Error
@@ -71,5 +77,6 @@ func (d *WordsDictionary) Add(upd WordProperties) (int, error) {
 
 	return word.ID, err
 }
+
 
 // TODO: implement DeleteAll method

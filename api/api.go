@@ -133,6 +133,14 @@ func (api *API) DeleteWord(w http.ResponseWriter, r *http.Request) {
 	jsonResponse(w, response)
 }
 
+func (api *API) DeleteAllWords(w http.ResponseWriter, r *http.Request) {
+	err := api.service.Words.DeleteAll()
+	if err != nil {
+		http.Error(w, "500 Internal server error", http.StatusInternalServerError)
+		log.Printf("[ERROR] API.DeleteAllWords: %s", err)
+		return
+	}
+}
 
 
 func (api *API) initRoutes(r *chi.Mux) {
@@ -140,6 +148,7 @@ func (api *API) initRoutes(r *chi.Mux) {
 	r.Post("/words", api.AddWord)
 	r.Put("/words/{id}", api.UpdateWord)
 	r.Delete("/words/{id}", api.DeleteWord)
+	r.Delete("/words", api.DeleteAllWords)
 }
 
 func jsonResponse(w http.ResponseWriter, data any) {

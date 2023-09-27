@@ -27,6 +27,12 @@ func (d *WordsService) Delete(id int) (error) {
 	return err
 }
 
+func (d *WordsService) DeleteAll() (error) {
+	err := d.dictionary.Words.DeleteAll()
+
+	return err
+}
+
 func (d *WordsService) Update(id int, upd data.WordProperties) (error) {
 
 	if upd.EnglishWord == "" || upd.RussianWord == "" {
